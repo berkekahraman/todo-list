@@ -39,12 +39,19 @@ class TaskManager:
                 f"{index}. [{status}] {task.title} "
                 f"| Priority: {task.priority} "
                 f"| Due: {task.due_date if task.due_date else 'No due date'}"
-)
+            )
 
     def complete_task(self, task_number):
         if task_number < 1 or task_number > len(self.tasks):
             print("Invalid task number.")
             return
+
+        task = self.tasks[task_number - 1]
+        task.mark_completed()
+        self.save_tasks()
+
+        print("Task marked as completed.")
+
     def delete_task(self, task_number):
         if task_number < 1 or task_number > len(self.tasks):
             print("Invalid task number.")
@@ -55,7 +62,16 @@ class TaskManager:
 
         print(f"Deleted: {deleted_task.title}")
 
+    def edit_task(self, task_number, title, priority, due_date):
+        if task_number < 1 or task_number > len(self.tasks):
+            print("Invalid task number.")
+            return
+
         task = self.tasks[task_number - 1]
-        task.mark_completed()
+        task.title = title
+        task.priority = priority
+        task.due_date = due_date
+
         self.save_tasks()
-        print("Task marked as completed.")
+
+        print("Task updated successfully.")

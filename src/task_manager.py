@@ -66,6 +66,16 @@ class TaskManager:
         if task_number < 1 or task_number > len(self.tasks):
             print("Invalid task number.")
             return
+
+        task = self.tasks[task_number - 1]
+        task.title = title
+        task.priority = priority
+        task.due_date = due_date
+
+        self.save_tasks()
+
+        print("Task updated successfully.")
+
     def search_tasks(self, keyword):
         found_tasks = []
 
@@ -87,6 +97,31 @@ class TaskManager:
                 f"| Due: {task.due_date if task.due_date else 'No due date'}"
             )
 
-        self.save_tasks()
+    def filter_tasks(self, filter_type):
+        filtered_tasks = []
 
-        print("Task updated successfully.")
+        for task in self.tasks:
+            if filter_type == "completed" and task.completed:
+                filtered_tasks.append(task)
+            elif filter_type == "pending" and not task.completed:
+                filtered_tasks.append(task)
+            elif filter_type == "high" and task.priority.lower() == "high":
+                filtered_tasks.append(task)
+            elif filter_type == "medium" and task.priority.lower() == "medium":
+                filtered_tasks.append(task)
+            elif filter_type == "low" and task.priority.lower() == "low":
+                filtered_tasks.append(task)
+
+        if not filtered_tasks:
+            print("No tasks found.")
+            return
+
+        print("\nFiltered Tasks:")
+
+        for index, task in enumerate(filtered_tasks, start=1):
+            status = "✓" if task.completed else "✗"
+            print(
+                f"{index}. [{status}] {task.title} "
+                f"| Priority: {task.priority} "
+                f"| Due: {task.due_date if task.due_date else 'No due date'}"
+            )

@@ -8,7 +8,8 @@ def show_menu():
     print("4. Complete Task")
     print("5. Delete Task")
     print("6. Search Tasks")
-    print("7. Exit") 
+    print("7. Filter Tasks")
+    print("8. Exit")
 
 
 def main():
@@ -77,6 +78,29 @@ def main():
             manager.search_tasks(keyword)
 
         elif choice == "7":
+            print("\nFilter Tasks")
+            print("1. Completed")
+            print("2. Pending")
+            print("3. High Priority")
+            print("4. Medium Priority")
+            print("5. Low Priority")
+
+            filter_choice = input("Choose filter: ")
+
+            if filter_choice == "1":
+                manager.filter_tasks("completed")
+            elif filter_choice == "2":
+                manager.filter_tasks("pending")
+            elif filter_choice == "3":
+                manager.filter_tasks("high")
+            elif filter_choice == "4":
+                manager.filter_tasks("medium")
+            elif filter_choice == "5":
+                manager.filter_tasks("low")
+            else:
+                print("Invalid filter option.")
+        
+        elif choice == "8":
             print("Goodbye!")
             break
 

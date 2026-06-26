@@ -20,7 +20,10 @@ def main():
 
         if choice == "1":
             title = input("Task title: ")
-            manager.add_task(title)
+            priority = input("Priority (High/Medium/Low): ")
+            due_date = input("Due date (YYYY-MM-DD, optional): ")
+
+            manager.add_task(title, priority, due_date)
             print("Task added successfully!")
 
         elif choice == "2":

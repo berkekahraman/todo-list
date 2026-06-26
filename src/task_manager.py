@@ -21,8 +21,8 @@ class TaskManager:
 
         save_tasks(task_data)
 
-    def add_task(self, title):
-        task = Task(title)
+    def add_task(self, title, priority, due_date):
+        task = Task(title, priority=priority, due_date=due_date)
         self.tasks.append(task)
         self.save_tasks()
 
@@ -35,7 +35,11 @@ class TaskManager:
 
         for index, task in enumerate(self.tasks, start=1):
             status = "✓" if task.completed else "✗"
-            print(f"{index}. [{status}] {task.title}")
+            print(
+                f"{index}. [{status}] {task.title} "
+                f"| Priority: {task.priority} "
+                f"| Due: {task.due_date if task.due_date else 'No due date'}"
+)
 
     def complete_task(self, task_number):
         if task_number < 1 or task_number > len(self.tasks):

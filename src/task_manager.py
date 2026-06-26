@@ -22,6 +22,12 @@ class TaskManager:
         save_tasks(task_data)
 
     def add_task(self, title, priority, due_date):
+        priority = priority.capitalize()
+
+        if priority not in ["High", "Medium", "Low"]:
+            print("Invalid priority. Using Medium as default.")
+            priority = "Medium"
+
         task = Task(title, priority=priority, due_date=due_date)
         self.tasks.append(task)
         self.save_tasks()
@@ -66,6 +72,12 @@ class TaskManager:
         if task_number < 1 or task_number > len(self.tasks):
             print("Invalid task number.")
             return
+
+        priority = priority.capitalize()
+
+        if priority not in ["High", "Medium", "Low"]:
+            print("Invalid priority. Using Medium as default.")
+            priority = "Medium"
 
         task = self.tasks[task_number - 1]
         task.title = title
@@ -125,6 +137,7 @@ class TaskManager:
                 f"| Priority: {task.priority} "
                 f"| Due: {task.due_date if task.due_date else 'No due date'}"
             )
+
     def show_statistics(self):
         total_tasks = len(self.tasks)
         completed_tasks = 0
@@ -161,5 +174,4 @@ class TaskManager:
         print(f"Low Priority     : {low_priority}")
         print()
         print(f"Completion Rate  : {completion_rate:.1f}%")
-        print("=====================================")    
-            
+        print("=====================================")

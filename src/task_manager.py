@@ -32,6 +32,15 @@ class TaskManager:
         self.tasks.append(task)
         self.save_tasks()
 
+    def print_task(self, index, task):
+        status = "✓" if task.completed else "✗"
+        print(
+            f"{index}. [{status}] {task.title} "
+            f"| Priority: {task.priority} "
+            f"| Due: {task.due_date if task.due_date else 'No due date'} "
+            f"| Created: {task.created_at}"
+        )
+
     def view_tasks(self):
         if not self.tasks:
             print("No tasks found.")
@@ -40,12 +49,7 @@ class TaskManager:
         print("\nTasks:")
 
         for index, task in enumerate(self.tasks, start=1):
-            status = "✓" if task.completed else "✗"
-            print(
-                f"{index}. [{status}] {task.title} "
-                f"| Priority: {task.priority} "
-                f"| Due: {task.due_date if task.due_date else 'No due date'}"
-            )
+            self.print_task(index, task)
 
     def complete_task(self, task_number):
         if task_number < 1 or task_number > len(self.tasks):
@@ -102,12 +106,7 @@ class TaskManager:
         print("\nSearch Results:")
 
         for index, task in enumerate(found_tasks, start=1):
-            status = "✓" if task.completed else "✗"
-            print(
-                f"{index}. [{status}] {task.title} "
-                f"| Priority: {task.priority} "
-                f"| Due: {task.due_date if task.due_date else 'No due date'}"
-            )
+            self.print_task(index, task)
 
     def filter_tasks(self, filter_type):
         filtered_tasks = []
@@ -131,12 +130,7 @@ class TaskManager:
         print("\nFiltered Tasks:")
 
         for index, task in enumerate(filtered_tasks, start=1):
-            status = "✓" if task.completed else "✗"
-            print(
-                f"{index}. [{status}] {task.title} "
-                f"| Priority: {task.priority} "
-                f"| Due: {task.due_date if task.due_date else 'No due date'}"
-            )
+            self.print_task(index, task)
 
     def show_statistics(self):
         total_tasks = len(self.tasks)

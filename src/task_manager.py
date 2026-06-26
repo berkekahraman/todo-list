@@ -41,6 +41,15 @@ class TaskManager:
         if task_number < 1 or task_number > len(self.tasks):
             print("Invalid task number.")
             return
+    def delete_task(self, task_number):
+        if task_number < 1 or task_number > len(self.tasks):
+            print("Invalid task number.")
+            return
+
+        deleted_task = self.tasks.pop(task_number - 1)
+        self.save_tasks()
+
+        print(f"Deleted: {deleted_task.title}")
 
         task = self.tasks[task_number - 1]
         task.mark_completed()

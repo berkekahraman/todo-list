@@ -9,7 +9,8 @@ def show_menu():
     print("5. Delete Task")
     print("6. Search Tasks")
     print("7. Filter Tasks")
-    print("8. Exit")
+    print("8. Statistics")
+    print("9. Exit")
 
 
 def main():
@@ -101,6 +102,8 @@ def main():
                 print("Invalid filter option.")
         
         elif choice == "8":
+            manager.show_statistics()
+        elif choice == "9":
             print("Goodbye!")
             break
 

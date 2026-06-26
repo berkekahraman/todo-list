@@ -125,3 +125,41 @@ class TaskManager:
                 f"| Priority: {task.priority} "
                 f"| Due: {task.due_date if task.due_date else 'No due date'}"
             )
+    def show_statistics(self):
+        total_tasks = len(self.tasks)
+        completed_tasks = 0
+        pending_tasks = 0
+        high_priority = 0
+        medium_priority = 0
+        low_priority = 0
+
+        for task in self.tasks:
+            if task.completed:
+                completed_tasks += 1
+            else:
+                pending_tasks += 1
+
+            if task.priority.lower() == "high":
+                high_priority += 1
+            elif task.priority.lower() == "medium":
+                medium_priority += 1
+            elif task.priority.lower() == "low":
+                low_priority += 1
+
+        if total_tasks == 0:
+            completion_rate = 0
+        else:
+            completion_rate = (completed_tasks / total_tasks) * 100
+
+        print("\n========== TASK STATISTICS ==========")
+        print(f"Total Tasks      : {total_tasks}")
+        print(f"Completed Tasks  : {completed_tasks}")
+        print(f"Pending Tasks    : {pending_tasks}")
+        print()
+        print(f"High Priority    : {high_priority}")
+        print(f"Medium Priority  : {medium_priority}")
+        print(f"Low Priority     : {low_priority}")
+        print()
+        print(f"Completion Rate  : {completion_rate:.1f}%")
+        print("=====================================")    
+            

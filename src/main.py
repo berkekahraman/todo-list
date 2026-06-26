@@ -2,6 +2,9 @@ from task_manager import TaskManager
 
 
 def show_menu():
+    print("\n=============================")
+    print("        TASK MANAGER")
+    print("=============================")
     print("1. Add Task")
     print("2. View Tasks")
     print("3. Edit Task")
@@ -11,6 +14,7 @@ def show_menu():
     print("7. Filter Tasks")
     print("8. Statistics")
     print("9. Exit")
+    print("=============================")
 
 
 def main():

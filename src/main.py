@@ -11,6 +11,7 @@ def show_menu():
 
 def main():
     manager = TaskManager()
+    manager.load_tasks()
 
     while True:
         show_menu()

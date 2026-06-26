@@ -7,7 +7,8 @@ def show_menu():
     print("3. Edit Task")
     print("4. Complete Task")
     print("5. Delete Task")
-    print("6. Exit") 
+    print("6. Search Tasks")
+    print("7. Exit") 
 
 
 def main():
@@ -72,8 +73,13 @@ def main():
                     print("Please enter a valid number.")
 
         elif choice == "6":
+            keyword = input("Search keyword: ")
+            manager.search_tasks(keyword)
+
+        elif choice == "7":
             print("Goodbye!")
             break
+
 
         else:
             print("Invalid option.")

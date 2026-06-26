@@ -66,11 +66,26 @@ class TaskManager:
         if task_number < 1 or task_number > len(self.tasks):
             print("Invalid task number.")
             return
+    def search_tasks(self, keyword):
+        found_tasks = []
 
-        task = self.tasks[task_number - 1]
-        task.title = title
-        task.priority = priority
-        task.due_date = due_date
+        for task in self.tasks:
+            if keyword.lower() in task.title.lower():
+                found_tasks.append(task)
+
+        if not found_tasks:
+            print("No matching tasks found.")
+            return
+
+        print("\nSearch Results:")
+
+        for index, task in enumerate(found_tasks, start=1):
+            status = "✓" if task.completed else "✗"
+            print(
+                f"{index}. [{status}] {task.title} "
+                f"| Priority: {task.priority} "
+                f"| Due: {task.due_date if task.due_date else 'No due date'}"
+            )
 
         self.save_tasks()
 
